@@ -443,9 +443,8 @@ The polygon is set at runtime through the zone's text entity, as `x,y` points in
 - An invalid value, or one that can't be saved, is rejected and the previous polygon is kept.
 
 The polygon is saved and restored on boot. On platforms that save to flash, an accepted polygon is written right
-away, without waiting for the next `flash_write_interval`. If that write fails, a warning is logged, the polygon
-stays in use, and it is written again with the next flash write. Presence is on while any target is inside the
-polygon, and stays on for [presence_timeout](#number) after the last target leaves it.
+away, without waiting for the next `flash_write_interval`. Presence is on while any target is inside the polygon,
+and stays on for [presence_timeout](#number) after the last target leaves it.
 
 > [!NOTE]
 > Polygons are checked against the raw coordinates reported by the radar, before any sensor filter, so a filter
