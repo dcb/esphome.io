@@ -542,8 +542,8 @@ has nothing to publish, so its sensors would keep their last value. To avoid tha
 lost when no valid frame has arrived for [link_timeout](#configuration-variables). A radar without power, a broken
 wire, or a radar that sends at a baud rate the ESP does not read causes this.
 
-On link loss the component logs one warning. The warning tells how many bytes arrived and how many frames were invalid
-since the last valid frame. Bytes without valid frames point to a wrong baud rate. No bytes at all point to power or
+On link loss the component logs one warning. The warning tells whether any bytes arrived and how many frames were
+invalid since the last valid frame. Bytes without valid frames point to a wrong baud rate. No bytes at all point to power or
 wiring. These entities then change:
 
 - These read `unknown`:
@@ -561,9 +561,9 @@ On the first valid frame the link is back. The component logs one message, the `
 entity publishes from that frame. An empty room reads off on that frame, without waiting for the
 [presence_timeout](#number).
 
-A `delayed_off` [filter](/components/binary_sensor/#binary-sensor-filters) on a presence binary sensor keeps working
-when the link is lost. If it is still waiting to turn the sensor off, it does so after its delay, and the sensor then
-reads off instead of `unknown`.
+[Filters](/components/binary_sensor/#binary-sensor-filters) on the presence binary sensors are reset on link loss:
+output they still hold back, such as a pending `delayed_off`, is dropped, so the sensor stays `unknown`. The values
+after the link returns go through the filters again, so a filter such as `delayed_on` still delays them.
 
 The silence that the component causes itself does not count as a loss, for a few seconds: at boot, after a restart
 with the restart button, after a factory reset, when Bluetooth is turned on or off, when the baud rate is changed,
