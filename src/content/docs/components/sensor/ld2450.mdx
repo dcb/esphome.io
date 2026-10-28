@@ -602,8 +602,8 @@ power or wiring. These entities then change:
     [polygon zone](#polygon-zones) binary sensors.
   - All target count sensors, including the zone counts.
   - All sensors of `target_N`: `x`, `y`, `speed`, `angle`, `distance` and `resolution`.
-  - The `direction` text sensors. They publish the text `unknown`, which Home Assistant shows as an unknown state.
-    `NA` still means that the radar sees no target.
+  - The `direction` and `xy` text sensors. They publish the text `unknown`, which Home Assistant shows as an unknown
+    state. `NA` still means that the radar sees no target.
 - The [connected](#ld2450-binary-sensors) binary sensor reads off.
 - These keep their last value, because they hold settings and not radar data: the switches, selects, numbers and
   polygon text entities, and the `version` and `mac_address` text sensors.
