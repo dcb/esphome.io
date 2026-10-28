@@ -338,8 +338,8 @@ number:
 - **ld2450_id** (*Optional*, [ID](/guides/configuration-types#id)): Manually specify the ID for the [Ld2450](/components/sensor/ld2450/) component.
 - **presence_timeout** (**Required**, int): The duration, in seconds, for which the
   [presence states](#ld2450-binary-sensors) will persist even after the detection is cleared. Range is 0 to 3600
-  seconds. The value is saved and restored after a reboot; if nothing is saved yet, it is `5` seconds. Without this
-  number, the duration is also `5` seconds. All options from [Number](/components/number#config-number).
+  seconds. The value is saved and restored after a reboot; if nothing is saved yet, it is `5` seconds. Without the
+  `ld2450` number platform, the duration is also `5` seconds. All options from [Number](/components/number#config-number).
 
   With `0`, there is no hold: a presence state clears on the first radar frame without a target. The
   `has_target`, `has_moving_target` and `has_still_target` binary sensors have a `settle`
