@@ -543,8 +543,8 @@ lost when no valid frame has arrived for [link_timeout](#configuration-variables
 wire, or a radar that sends at a baud rate the ESP does not read causes this.
 
 On link loss the component logs one warning. The warning tells whether any bytes arrived and how many frames were
-invalid since the last valid frame. Bytes without valid frames point to a wrong baud rate. No bytes at all point to power or
-wiring. These entities then change:
+invalid since the last valid frame. Bytes without valid frames point to a wrong baud rate. No bytes at all point to
+power or wiring. These entities then change:
 
 - These read `unknown`:
   - The `has_target`, `has_moving_target` and `has_still_target` binary sensors, and the
@@ -556,6 +556,9 @@ wiring. These entities then change:
 - The [connected](#ld2450-binary-sensors) binary sensor reads off.
 - These keep their last value, because they hold settings and not radar data: the switches, selects, numbers and
   polygon text entities, and the `version` and `mac_address` text sensors.
+
+When the radar has sent no frame since boot, only the warning and the `connected` sensor change: the other entities
+have no value yet, so they already read `unknown`.
 
 On the first valid frame the link is back. The component logs one message, the `connected` sensor turns on and every
 entity publishes from that frame. An empty room reads off on that frame, without waiting for the
