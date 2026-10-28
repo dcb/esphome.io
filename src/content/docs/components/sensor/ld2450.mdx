@@ -342,9 +342,10 @@ number:
   number, the duration is also `5` seconds. All options from [Number](/components/number#config-number).
 
   With `0`, there is no hold: a presence state clears on the first radar frame without a target. The
-  [default filter](#ld2450-binary-sensors) of the `has_target`, `has_moving_target` and `has_still_target` binary
-  sensors still delays that change by its `settle` time. [Polygon zone](#polygon-zones) binary sensors have no
-  filters, so they turn off on that frame.
+  `has_target`, `has_moving_target` and `has_still_target` binary sensors have a `settle`
+  [default filter](#ld2450-binary-sensors): it passes that change at once when the state was steady for its settle
+  time, and delays it only when the state changed within that time. [Polygon zone](#polygon-zones) binary sensors
+  have no filters, so they turn off on that frame.
 
 > [!NOTE]
 > The `presence_timeout` value applies *only* to the [presence binary sensor states](#ld2450-binary-sensors),
